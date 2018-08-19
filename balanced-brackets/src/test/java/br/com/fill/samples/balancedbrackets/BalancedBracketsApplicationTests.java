@@ -16,8 +16,6 @@ public class BalancedBracketsApplicationTests {
 	private static final String MSG_ERR_CENARIO_VALIDO = "Cenario %s não é válido";
 	private static final String MSG_ERR_CENARIO_INVALIDO = "Cenario %s  não é inválido";
 
-	private static final int TEMPO_LIMITE = 100;
-
 	@Autowired
 	private BracketsValidator validator;
 
@@ -25,7 +23,7 @@ public class BalancedBracketsApplicationTests {
 	public void contextLoads() {
 	}
 
-	@Test(timeout = TEMPO_LIMITE)
+	@Test
 	public void testaCenariosBraviSucesso() {
 		String cenario1 = "(){}[]";
 		String cenario2 = "[{()}](){}";
@@ -36,7 +34,7 @@ public class BalancedBracketsApplicationTests {
 		assertTrue(String.format(MSG_ERR_CENARIO_VALIDO, cenario3), validator.isValid(cenario3));
 	}
 
-	@Test(timeout = TEMPO_LIMITE)
+	@Test
 	public void testaCenariosBraviFalha() {
 		String cenario1 = "[]{()";
 		String cenario2 = "[{)]";
@@ -47,17 +45,17 @@ public class BalancedBracketsApplicationTests {
 		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, cenario3), validator.isValid(cenario3));
 	}
 
-	@Test(timeout = TEMPO_LIMITE)
+	@Test
 	public void testaCenarioVazio() {
 		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, "STRING VAZIA"), validator.isValid(""));
 	}
 
-	@Test(timeout = TEMPO_LIMITE)
+	@Test
 	public void testaCenarioNulo() {
 		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, "STRING NULA"), validator.isValid(null));
 	}
 
-	@Test(timeout = TEMPO_LIMITE)
+	@Test
 	public void testaCaracteresInvalidos() {
 		String cenario1 = "a[{)]";
 		String cenario2 = "['{()}'](){}";
