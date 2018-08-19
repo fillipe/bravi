@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>balanced-brackets</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Teste para a Bravi - Desafio 1: Validador de balanceamento de brackets</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
