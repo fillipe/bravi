@@ -25,30 +25,39 @@ public class BalancedBracketsApplicationTests {
 	public void contextLoads() {
 	}
 
-	@Test(timeout=TEMPO_LIMITE)
+	@Test(timeout = TEMPO_LIMITE)
 	public void testaCenariosBraviSucesso() {
 		String cenario1 = "(){}[]";
 		String cenario2 = "[{()}](){}";
+		String cenario3 = "[[[[[[{{{{(())}}}}]]]]]](){}";
 
 		assertTrue(String.format(MSG_ERR_CENARIO_VALIDO, cenario1), validator.isValid(cenario1));
 		assertTrue(String.format(MSG_ERR_CENARIO_VALIDO, cenario2), validator.isValid(cenario2));
+		assertTrue(String.format(MSG_ERR_CENARIO_VALIDO, cenario3), validator.isValid(cenario3));
 	}
 
-	@Test(timeout=TEMPO_LIMITE)
+	@Test(timeout = TEMPO_LIMITE)
 	public void testaCenariosBraviFalha() {
 		String cenario1 = "[]{()";
 		String cenario2 = "[{)]";
-		
+		String cenario3 = "([}{)]";
+
 		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, cenario1), validator.isValid(cenario1));
 		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, cenario2), validator.isValid(cenario2));
+		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, cenario3), validator.isValid(cenario3));
 	}
 
-	@Test(timeout=TEMPO_LIMITE)
+	@Test(timeout = TEMPO_LIMITE)
 	public void testaCenarioVazio() {
 		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, "STRING VAZIA"), validator.isValid(""));
 	}
 
-	@Test(timeout=TEMPO_LIMITE)
+	@Test(timeout = TEMPO_LIMITE)
+	public void testaCenarioNulo() {
+		assertFalse(String.format(MSG_ERR_CENARIO_INVALIDO, "STRING NULA"), validator.isValid(null));
+	}
+
+	@Test(timeout = TEMPO_LIMITE)
 	public void testaCaracteresInvalidos() {
 		String cenario1 = "a[{)]";
 		String cenario2 = "['{()}'](){}";
